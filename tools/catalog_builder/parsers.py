@@ -151,7 +151,7 @@ def parse_nc_file(file_path: pathlib.Path, catalog_info: dict) -> dict:
                 if calendar == 'no_leap':
                     calendar = 'noleap'
             start_time = cftime.num2date(time_var.values[0], time_var.attrs['units'], calendar=calendar)
-            end_time = cftime.num2date(time_var.values[-1], time_var.attrs['units'])
+            end_time = cftime.num2date(time_var.values[-1], time_var.attrs['units'], calendar=calendar)
             time_range = start_time.strftime("%Y%m%d:%H%M%S") + '-' + end_time.strftime("%Y%m%d:%H%M%S")
             catalog_info.update({'time_range': time_range})
 

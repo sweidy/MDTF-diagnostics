@@ -71,12 +71,15 @@ def date_fmt(date: str):
             fmt = '%Y%m%d%H%M'
         case 14:
             fmt = '%Y%m%d%H%M%S'
+        case 21:
+            fmt = '%Y%m%d%H%M%S.%f'
     return fmt
 
 # convert a string to a cftime object
 
 
 def str_to_cftime(time_str: str, fmt=None, calendar=None):
+    fmt = date_fmt(time_str)
     if fmt is None:
         fmt = date_fmt(time_str)
     if calendar is None:

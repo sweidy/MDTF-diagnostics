@@ -198,6 +198,19 @@ end if
   else
   x_season_w&time = time1
   end if
+
+  print("EOF DEBUG") 
+  printVarSummary(x_season_w)
+  printMinMax(x_season_w, True)
+  print("typeof(x_season_w): " + typeof(x_season_w))
+  print("missing: " + num(ismissing(x_season_w)))
+  print("total: " + dimsizes(ndtooned(x_season_w)))
+
+  x_std = dim_stddev_n_Wrap(x_season_w, 2)
+  printMinMax(x_std, True)
+  print("zero-std series: " + num(x_std.eq.0))
+  print("missing-std series: " + num(ismissing(x_std)))
+
   eof    = eofunc_Wrap(x_season_w, neof, False)
   eof_ts = eofunc_ts_Wrap(x_season_w,eof,False)
 

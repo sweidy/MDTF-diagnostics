@@ -85,8 +85,10 @@ if ( time@units.eq."julian day") then  ; set so cd_calendar can convert it
   time@calendar = "julian"
 end if ; time@units julian
 
+time_double = todouble(time)
+copy_VarAtts(time,time_double)
 ;time_array = cd_calendar(time,0) ; separated YYYY,MM,DD,HH dim
-time_all = cd_calendar(time,-3)  ; YYYYMMDDHH
+time_all = cd_calendar(time_double,-3)  ; YYYYMMDDHH
 
 i1 = 0
 nd = dimsizes(time_all)

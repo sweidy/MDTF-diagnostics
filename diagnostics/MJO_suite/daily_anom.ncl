@@ -58,7 +58,16 @@ do i=0,dimsizes(var_names)-1
 	gw = f->gw
 	invar = f->$var_name$($time_coord$|:,$lat_coord$|:,$lon_coord$|:)
 
-	var = compute_daily_anom(invar)
+  if (typeof(invar).eq."double") then
+    invar_float = tofloat(invar)
+    copy_VarMeta(invar, invar_float)
+  else
+    invar_float = invar
+  end if
+
+  printVarSummary(invar_float)
+  var = compute_daily_anom(invar_float)
+
 	var!0 = "time"
 	var!1 = "lat"
 	var!2 = "lon"
